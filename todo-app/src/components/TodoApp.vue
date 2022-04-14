@@ -4,6 +4,7 @@
 
     <div class="d-flex">
       <input v-model="tache" type="text" placeholder="Ajouter une tâche" class="form-control">
+      <input v-model="tache" type="text" placeholder="Estimation de la tâche" class="form-control">
       <button @click="ajoutTache" class="btn btn-warning rounded-0">Entrer</button>
     </div>
 
@@ -24,7 +25,10 @@
             <span :class="{'done': tache.statut === 'done'}">{{tache.nom}}</span>
           </td>
           <td>
-            Théo
+            {{tache.responsable}}
+          </td>
+          <td>
+            {{tache.estimation}}
           </td>
           <td style="width: 120px">
             <span class="pointer" @click="changerStatut(index)"
@@ -35,9 +39,6 @@
             >
               {{ firstCharUpper(tache.statut) }}
             </span>
-          </td>
-          <td>
-            5 heures
           </td>
           <td>
             <div class="text-center" @click="modifierTache(index)">
@@ -73,10 +74,14 @@ export default {
       taches: [
         {
           nom: 'Apprendre à faire une Todo List.',
+          responsable: 'Hugo',
+          estimation: '5',
           statut: 'done'
         },
         {
           nom: "Réaliser l'élective VueJS.",
+          responsable: 'Kévin',
+          estimation: '5',
           statut: 'en cours'
         }
       ]
@@ -84,41 +89,57 @@ export default {
   },
 
   methods: {
-    ajoutTache(){
-      if(this.tache.length === 0) return;
 
-      if(this.modifierTache === null){
-        this.taches.push({
-          nom: this.tache,
-          statut: 'done'
-        });
-      }else{
-        this.taches[this.modifierTache].nom = this.tache;
-        this.modifierTache = null;
-      }
-
-      this.tache = '';
+    /**
+     * Première lettre de la tâche en majuscule
+     */
+    firstCharUpper(str){
+      return str.charAt(0).toUpperCase() + str.slice(1);
     },
 
+    /**
+     * Modifier le statut d'une tâche par index
+     */
+     changerStatut(index){
+       let newIndex = this.statutsDisponible.indexOf(this.taches[index].statut);
+       if(++newIndex > 2) newIndex = 0;
+       this.taches[index].statut = this.statutsDisponible[newIndex];
+     },
+
+    /**
+    * Supprimer une tâche par index
+    */
     supprimerTache(index){
       this.taches.splice(index, 1);
     },
 
-    modifierTache(index){
+    /**
+     * Modifier une tâche
+     */
+     modifierTache(index){
       this.tache = this.taches[index].nom;
-      this.modifierTache = index;
+      this.tacheModifie = index;
     },
 
-    changerStatut(index){
-      let newIndex = this.statutsDisponible.indexOf(this.taches[index].statut);
-      if(++newIndex > 2) newIndex = 0;
-      this.taches[index].statut = this.statutsDisponible[newIndex];
-    },
+    /**
+     * Ajouter une tâche
+     */
+     ajoutTache(){
+      if(this.tache.length === 0) return;
 
-    firstCharUpper(str){
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-  }
+      if(this.tacheModifie != null){
+        this.taches.push[this.tacheModifie].nom = this.task;
+        this.tacheModifie = null;
+      } else {
+        this.taches.push({
+          nom: this.tache,
+          statut: "à faire",
+        });
+      }
+
+      this.tache = '';
+    },
+  },
 };
 
 </script>
