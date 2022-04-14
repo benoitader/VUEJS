@@ -3,7 +3,7 @@
     <h2 class="text-center mt-5">Ma Todo List Application</h2>
 
     <div class="d-flex">
-      <input type="text" placeholder="Entrer une tâche" class="form-control">
+      <input v-model="tache" type="text" placeholder="Ajouter une tâche" class="form-control">
       <button @click="submitTache" class="btn btn-warning rounded-0">Entrer</button>
     </div>
 
@@ -47,6 +47,7 @@ export default {
 
   data(){
     return {
+      tache: 'Hello World',
       taches: [
         {
           name: 'Dire à Hugo de fermer sa gueule.',
@@ -62,7 +63,7 @@ export default {
 
   methods: {
     submitTache(){
-      console.log('Bonjour Benoit.')
+      console.log(this.tache)
     }
   }
 };
