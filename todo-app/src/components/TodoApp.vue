@@ -4,29 +4,48 @@
 
     <div class="d-flex">
       <input v-model="tache" type="text" placeholder="Ajouter une tâche" class="form-control">
-      <button @click="submitTache" class="btn btn-warning rounded-0">Entrer</button>
+      <button @click="ajoutTache" class="btn btn-warning rounded-0">Entrer</button>
     </div>
 
     <table class="table table-bordered mt-5">
       <thead>
         <tr>
           <th scope="col">Tâches</th>
+          <th scope="col">Responsable de la tâche</th>
+          <th scope="col">Estimation de temps</th>
           <th scope="col">Statut</th>
-          <th scope="col" class="text-center">#</th>
-          <th scope="col" class="text-center">#</th>
+          <th scope="col" class="text-center">Modifier</th>
+          <th scope="col" class="text-center">Supprimer</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="(tache, index) in taches" :key="index">
-          <th>{{tache.name}}</th>
-          <td>{{tache.statut}}</td>
           <td>
-            <div class="text-center">
+            <span :class="{'done': tache.statut === 'done'}">{{tache.nom}}</span>
+          </td>
+          <td>
+            Théo
+          </td>
+          <td style="width: 120px">
+            <span class="pointer" @click="changerStatut(index)"
+              :class="{'text-danger': tache.statut === 'à faire',
+              'text-warning': tache.statut === 'en cours',
+              'text-success': tache.statut === 'done'
+              }"
+            >
+              {{ firstCharUpper(tache.statut) }}
+            </span>
+          </td>
+          <td>
+            5 heures
+          </td>
+          <td>
+            <div class="text-center" @click="modifierTache(index)">
               <span class="fa fa-pen"></span>
             </div>
           </td>
           <td>
-            <div class="text-center">
+            <div class="text-center" @click="supprimerTache(index)">
               <span class="fa fa-trash"></span>
             </div>
           </td>
@@ -40,30 +59,64 @@
 <script>
 
 export default {
-  name: 'HelloWorld',
+  nom: 'HelloWorld',
   props: {
     msg: String
   },
 
   data(){
     return {
-      tache: 'Hello World',
+      tache: '',
+      tacheModifie: null,
+      statutsDisponible: ['done', 'en cours', 'à faire'],
+
       taches: [
         {
-          name: 'Dire à Hugo de fermer sa gueule.',
-          statut: 'Fait'
+          nom: 'Apprendre à faire une Todo List.',
+          statut: 'done'
         },
         {
-          name: 'Manger le riz curry de Benoit.',
-          statut: 'En cours'
+          nom: "Réaliser l'élective VueJS.",
+          statut: 'en cours'
         }
       ]
     }
   },
 
   methods: {
-    submitTache(){
-      console.log(this.tache)
+    ajoutTache(){
+      if(this.tache.length === 0) return;
+
+      if(this.modifierTache === null){
+        this.taches.push({
+          nom: this.tache,
+          statut: 'done'
+        });
+      }else{
+        this.taches[this.modifierTache].nom = this.tache;
+        this.modifierTache = null;
+      }
+
+      this.tache = '';
+    },
+
+    supprimerTache(index){
+      this.taches.splice(index, 1);
+    },
+
+    modifierTache(index){
+      this.tache = this.taches[index].nom;
+      this.modifierTache = index;
+    },
+
+    changerStatut(index){
+      let newIndex = this.statutsDisponible.indexOf(this.taches[index].statut);
+      if(++newIndex > 2) newIndex = 0;
+      this.taches[index].statut = this.statutsDisponible[newIndex];
+    },
+
+    firstCharUpper(str){
+      return str.charAt(0).toUpperCase() + str.slice(1);
     }
   }
 };
@@ -71,4 +124,13 @@ export default {
 </script>
 
 <style scoped>
+
+.pointer{
+  cursor: pointer;
+}
+
+.done{
+  text-decoration: line-through;
+}
+
 </style>
