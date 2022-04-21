@@ -1,17 +1,30 @@
 <template>
   <div class="home">
-    <h1>SALUT</h1>
+
+    <div :key="index" v-for="(bieres, index) in bieres" id="vitrine-biere">
+      <h1>{{bieres.name}}</h1>
+    </div>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import axios from 'axios'
 
 export default {
   name: 'HomeView',
-  components: {
-    HelloWorld
-  }
+  data(){
+    return{
+      bieres: null,
+    }
+  },
+  mounted(){
+    axios
+    .get('https://api.punkapi.com/v2/beers')
+    .then((reponse) => {
+      this.bieres = reponse.data;
+      console.log(this.bieres)
+    });
+  },
 }
 </script>
