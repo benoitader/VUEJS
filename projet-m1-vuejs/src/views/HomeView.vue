@@ -1,15 +1,18 @@
 <template>
   <div id="home">
 
-    <h2>Nos bières</h2>
+    <h2>Recherchez la bières de votre choix</h2>
 
     <div class="search-area">
-      <input type="text" v-model="recherche" placeholder="Rechercher une bière" />
+      <form @submit.prevent="getData">
+        <input style="border: none;border-bottom: 1px solid;margin-right: 5px;width: 30%;" type="search" placeholder="Rechercher une bière" v-model="bieres">
+        <input style="border:none;background:#ffd400;text-transform:lowercase;padding:10px;border-radius:5px;" type="submit" name="Recherche bières" value="Rechercher">
+      </form>
     </div>
 
     <div id="vitrine-discobeer">
 
-      <div :key="index" v-for="(bieres, index) in bieres.slice(0, 6)" class="vitrine-biere">
+      <div :key="index" v-for="(bieres, index) in data.slice(0, 6)" class="vitrine-biere">
 
         <div class="cadre-img-biere">
           <div class="content-cadre">
@@ -60,23 +63,20 @@ export default {
   name: 'HomeView',
   data(){
     return{
-      bieres: [],
-      recherche: '',
+      data: [],
     }
   },
-  mounted(){
-    axios
-    .get('https://api.punkapi.com/v2/beers')
-    .then((reponse) => {
-      this.bieres = reponse.data;
-    }).catch(erreur => this.bieres = [{title: "Erreur de chargement"}]);
-  },
-  computed: {
-    filtreBieres: function(){
-      return this.bieres.filter((biere) => {
-        return biere.name.match(this.recherche);
-      });
+  methods: {
+    async getData(){
+      await axios.get(`https://api.punkapi.com/v2/beers?beer_name=${this.bieres}`)
+      .then((reponse) =>{
+        this.data = reponse.data
+        console.log(this.data)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
     }
-  }
+  },
 }
 </script>
