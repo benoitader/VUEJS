@@ -79,15 +79,130 @@ body{
 
 .dot-separation{
   display: flex;
+  place-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.dot{
-  width: 15px;
-  height: 15px;
-  background: #f5cc00;
+.vitrine-biere:nth-child(even) .dot{
+  width: 5px;
+  height: 5px;
+  background: #e8c102;
   border-radius: 30px;
   margin-right: 15px;
   margin-left: 15px;
+}
+
+.vitrine-biere:nth-child(odd) .dot{
+  width: 5px;
+  height: 5px;
+  background: #e87702;
+  border-radius: 30px;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+
+
+#vitrine-discobeer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+#vitrine-discobeer p{
+  font-size: 13px;
+}
+
+.vitrine-biere{
+  width: 30%;
+  margin-bottom: 150px;
+}
+
+.cadre-img-biere{
+  position: relative;
+  display: flex;
+  place-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 275px;
+  margin: auto;
+  min-height: 400px;
+}
+
+.content-cadre{
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+.cadre-img-biere::after{
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-image: url(./assets/capsule.png);
+  background-size: contain;
+  bottom: -10%;
+}
+
+.vitrine-biere:nth-child(odd){
+  background: #e8c10257;
+  border-radius: 50px;
+  padding: 10px;
+}
+
+.vitrine-biere:nth-child(even){
+  background: #e8770257;
+  border-radius: 20px;
+  padding: 10px;
+}
+
+.vitrine-biere:nth-child(odd) .cadre-img-biere{
+  background: #e8c102;
+  margin-bottom: 50px;
+}
+
+.vitrine-biere:nth-child(even) .cadre-img-biere{
+  background: #e87702;
+  margin-bottom: 50px;
+}
+
+.cadre-img-biere .sup-img{
+  text-align: right;
+  font-size: 17px;
+  color: white;
+  font-weight: bold;
+}
+
+.cadre-img-biere .sup-img p{
+  margin: 0;
+}
+
+.cadre-img-biere .sup-img p:nth-child(2){
+  font-size: 13px;
+  margin-top: 5px;
+  text-transform: uppercase;
+  color: #b79600;
+}
+
+.vitrine-biere:nth-child(even) .cadre-img-biere .sup-img p:nth-child(2){
+  color: #e8c102;
+}
+
+.cadre-img-biere h3{
+  color: white;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+.cadre-img-biere img{
+  height: 150px;
+}
+
+.description-biere{
+  text-align: left;
+  max-width: 90%;
+  margin: auto;
 }
 
 </style>
