@@ -107,6 +107,7 @@ body{
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 50px;
 }
 
 #vitrine-discobeer p{
@@ -203,6 +204,25 @@ body{
   text-align: left;
   max-width: 90%;
   margin: auto;
+}
+
+.pagination{
+  margin-bottom: 50px;
+  place-content: center;
+}
+
+#home .page-item.active .page-link{
+  background-color: #e8c102;
+  border-color: #e8c102;
+  color: #fff;
+}
+
+#home .page-link{
+  color: #e8c102;
+}
+
+#home .page-link:focus{
+  box-shadow: 0 0 0 0.25rem rgb(232 193 2 / 26%);
 }
 
 </style>
