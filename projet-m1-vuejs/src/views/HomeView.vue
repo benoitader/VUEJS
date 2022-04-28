@@ -5,7 +5,7 @@
 
     <div class="search-area">
       <form @submit.prevent="getData">
-        <input style="border: none;border-bottom: 1px solid;margin-right: 5px;width: 30%;" type="search" placeholder="Rechercher une bière" v-model="query">
+        <input style="background:none;border: none;border-bottom: 1px solid white;margin-right: 5px;width: 30%;" type="search" placeholder="Rechercher une bière" v-model="query">
         <input style="border:none;background:#ffd400;text-transform:lowercase;padding:10px;border-radius:5px;" type="submit" name="Recherche bières" value="Rechercher">
       </form>
     </div>

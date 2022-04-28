@@ -5,14 +5,14 @@
 
       <div class="search-area">
         <form @submit.prevent="getBieresABV">
-          <h3>Trouver une bière avec un taux alcool supérieur à</h3>
+          <h3>Taux alcool (%) > à </h3>
           <input style="border: none;border-bottom: 1px solid;margin-right: 5px;width: 30%;" type="number" v-model="taux_abv">
           <input style="border:none;background:#ffd400;text-transform:lowercase;padding:10px;border-radius:5px;" type="submit" name="Recherche bières" value="Rechercher">
         </form>
       </div>
 
       <div class="slider">
-        <h3>Trouver une bière avec un IBU compris entre ... et ....</h3>
+        <h3>Filtre IBU</h3>
         <div class='range-slider'>
           <div class="range-number">
             <input type="range" style="margin-right:15px;" min=1 max=140 step="1" v-model="minIBU">

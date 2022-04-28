@@ -29,6 +29,10 @@
 
 body{
   margin: 0;
+  background: url('./assets/tavern.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white!important;
 }
 
 #home{
@@ -44,7 +48,7 @@ body{
 }
 
 #nav nav a{
-  color: black;
+  color: white;
   font-size: 25px;
   font-weight: bold;
   text-decoration: none;
@@ -148,13 +152,13 @@ body{
 
 .vitrine-biere:nth-child(odd){
   background: #e8c10257;
-  border-radius: 50px;
+  border-radius: 5px;
   padding: 10px;
 }
 
 .vitrine-biere:nth-child(even){
   background: #e8770257;
-  border-radius: 20px;
+  border-radius: 5px;
   padding: 10px;
 }
 
@@ -223,6 +227,10 @@ body{
 
 #home .page-link:focus{
   box-shadow: 0 0 0 0.25rem rgb(232 193 2 / 26%);
+}
+
+.search-area input::placeholder{
+  color: white;
 }
 
 </style>
