@@ -85,7 +85,7 @@ export default {
       .then((resp)=>{
         this.bieres = resp.data;
       })
-    },
+    }
   },
   methods: {
     async getData(){
