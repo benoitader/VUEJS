@@ -30,8 +30,6 @@
 body{
   margin: 0;
   background: url('./assets/tavern.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
   color: white!important;
 }
 
@@ -231,6 +229,12 @@ body{
 
 .search-area input::placeholder{
   color: white;
+}
+
+.range-number{
+  padding: 5px;
+  margin: 10px;
+  background: #e8c1028f;
 }
 
 </style>
