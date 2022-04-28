@@ -8,7 +8,7 @@
         <nav>
           <router-link to="/">Accueil</router-link>
           <div class="separation">-</div>
-          <router-link to="/bieres">Bieres</router-link>
+          <router-link to="/bieres">Filtra Bières</router-link>
         </nav>
       </div>
       <div id="logo">
